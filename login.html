@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NICKTECH SOLUTIONS | Login</title>
+<link rel="shortcut icon" href="img/favicon.png" type="image/x-icon"/>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<!-- Favicons -->
+<link rel="shortcut icon" href="img/icon.png" type="image/x-icon"/>
+<!-- Favicons -->
+
+<body>
+
+    <!-- two other colors
+
+<body class="lite">
+<body class="dark">
+
+-->
+
+    $(if chap-id)
+    <form name="sendin" action="$(link-login-only)" method="post" style="display:none">
+        <input type="hidden" name="username" />
+        <input type="hidden" name="password" />
+        <input type="hidden" name="dst" value="$(link-orig)" />
+        <input type="hidden" name="popup" value="true" />
+    </form>
+
+    <script src="/md5.js"></script>
+    <script>
+        function doLogin() {
+            document.sendin.username.value = document.login.username.value;
+            document.sendin.password.value = hexMD5('$(chap-id)' + document.login.password.value + '$(chap-challenge)');
+            document.sendin.submit();
+            return false;
+        }
+
+    </script>
+    $(endif)
+   <div class="login-container">
+        <div class="logo">
+            <img src="img/icon.png" alt="NICKTECH SOLUTIONS">
+        </div>
+        <div class="logo">NICKTECH SOLUTIONS</div><br>
+        <div class="tagline">Secure Internet Access</div>
+
+        <p class="info $(if error)alert$(endif)">
+                        $(if error == "")Please log in to use the internet hotspot service $(if trial == 'yes')<br />Free trial available, <a href="$(link-login-only)?dst=$(link-orig-esc)&amp;username=T-$(mac-esc)">click here</a>.$(endif)
+                        $(endif)
+
+                        $(if error)$(error)$(endif)
+                    </p>
+
+        <!-- Login Form -->
+        <form name="login" action="$(link-login-only)" method="post"  onsubmit="return doLogin()">
+            <input type="hidden" name="dst" value="$(link-orig)" />
+            <input type="hidden" name="popup" value="true" />
+
+            <input type="text" name="username" placeholder="Enter Username" required>
+            <input type="password" name="password" placeholder="Enter Password" required>
+
+            <button type="submit" class="login-btn">Login</button>
+        </form>
+
+<br>
+   <!-- ✅ Hourly Packages Section -->
+<div class="packages-section">  
+    <div class="packages-container two-columns">
+        <div class="package-card">
+            <h3>1 Hour</h3>
+            <!-- <p>Speed: 5Mbps</p> -->
+            <p>Validity: 1 Hour</p>
+            <div class="price">Ksh 10</div>
+            <a href="https://nicktechsolutions.com/buy-voucher?pkg=1hour" class="voucher-link">Buy Now</a>
+        </div>
+        <div class="package-card">
+            <h3>2 Hours</h3>
+            <!-- <p>Speed: 5Mbps</p> -->
+            <p>Validity: 2 Hours</p>
+            <div class="price">Ksh 20</div>
+            <a href="https://nicktechsolutions.com/buy-voucher?pkg=2hours" class="voucher-link">Buy Now</a>
+        </div>
+        <div class="package-card">
+            <h3>6 Hours</h3>
+            <!-- <p>Speed: 8Mbps</p> -->
+            <p>Validity: 4 Hours</p>
+            <div class="price">Ksh 40</div>
+            <a href="https://nicktechsolutions.com/buy-voucher?pkg=6hours" class="voucher-link">Buy Now</a>
+        </div>
+        <div class="package-card">
+            <h3>24 Hours</h3>
+            <!-- <p>Speed: 10Mbps</p> -->
+            <p>Validity: 24 Hours</p>
+            <div class="price">Ksh 50</div>
+            <a href="https://nicktechsolutions.com/buy-voucher?pkg=24hours" class="voucher-link">Buy Now</a>
+        </div>
+    </div>
+</div>
+
+
+        <!-- Device Info -->
+        <div class="info-box">
+            <strong>Device Info:</strong><br>
+            IP: $(ip)<br>
+            MAC: $(mac)<br>
+            Uptime: $(uptime)<br>
+            Data Used: $(bytes-in-nice) / $(bytes-out-nice)<br>
+            Expiry: $(session-time-left)
+        </div>
+
+          
+        <!-- Footer -->
+        <div class="footer">
+             📞 Call/WhatsApp:
+                <a href="https://wa.me/254704487610?text=Hello%20Nicktech%20Solutions" style="color: azure;" target="_blank">
+                   0704487610
+                </a>
+             <br><br>
+            &copy; Reserved by NICKTECH SOLUTIONS <br>
+           
+        </div>
+    </div>
+
+</body>
+</html>
