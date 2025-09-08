@@ -47,7 +47,11 @@
         <div class="tagline">Secure Internet Access</div>
 
         <p class="info $(if error)alert$(endif)">
-                        $(if error == "")Please log in to use the internet hotspot service $(if trial == 'yes')<br />Free trial available, <a href="$(link-login-only)?dst=$(link-orig-esc)&amp;username=T-$(mac-esc)">click here</a>.$(endif)
+                        $(if error == "")Please log in to use the internet hotspot service $(if trial == 'yes')
+                                <br />Free trial available, 
+                                <a href="$(link-login-only)?dst=$(link-orig-esc)&amp;username=T-$(mac-esc)">
+                                    click here</a>.
+                                    $(endif)
                         $(endif)
 
                         $(if error)$(error)$(endif)
@@ -66,38 +70,54 @@
 
 <br>
    <!-- ✅ Hourly Packages Section -->
+<!-- ✅ Hourly Packages Section -->
 <div class="packages-section">  
-    <div class="packages-container two-columns">
-        <div class="package-card">
-            <h3>1 Hour</h3>
-            <!-- <p>Speed: 5Mbps</p> -->
-            <p>Validity: 1 Hour</p>
-            <div class="price">Ksh 10</div>
-            <a href="https://nicktechsolutions.com/buy-voucher?pkg=1hour" class="voucher-link">Buy Now</a>
-        </div>
-        <div class="package-card">
-            <h3>2 Hours</h3>
-            <!-- <p>Speed: 5Mbps</p> -->
-            <p>Validity: 2 Hours</p>
-            <div class="price">Ksh 20</div>
-            <a href="https://nicktechsolutions.com/buy-voucher?pkg=2hours" class="voucher-link">Buy Now</a>
-        </div>
-        <div class="package-card">
-            <h3>6 Hours</h3>
-            <!-- <p>Speed: 8Mbps</p> -->
-            <p>Validity: 4 Hours</p>
-            <div class="price">Ksh 40</div>
-            <a href="https://nicktechsolutions.com/buy-voucher?pkg=6hours" class="voucher-link">Buy Now</a>
-        </div>
-        <div class="package-card">
-            <h3>24 Hours</h3>
-            <!-- <p>Speed: 10Mbps</p> -->
-            <p>Validity: 24 Hours</p>
-            <div class="price">Ksh 50</div>
-            <a href="https://nicktechsolutions.com/buy-voucher?pkg=24hours" class="voucher-link">Buy Now</a>
-        </div>
+  <div class="packages-container two-columns">
+
+    <div class="package-card">
+      <h3>1 Hour</h3>
+      <p>Validity: 1 Hour</p>
+      <div class="price">Ksh 10</div>
+      <button class="buy-btn" data-pkg="1hour" data-price="10">Buy Now</button>
     </div>
+
+    <div class="package-card">
+      <h3>2 Hours</h3>
+      <p>Validity: 2 Hours</p>
+      <div class="price">Ksh 20</div>
+      <button class="buy-btn" data-pkg="2hours" data-price="20">Buy Now</button>
+    </div>
+
+    <div class="package-card">
+      <h3>6 Hours</h3>
+      <p>Validity: 6 Hours</p>
+      <div class="price">Ksh 40</div>
+      <button class="buy-btn" data-pkg="6hours" data-price="40">Buy Now</button>
+    </div>
+
+    <div class="package-card">
+      <h3>24 Hours</h3>
+      <p>Validity: 24 Hours</p>
+      <div class="price">Ksh 50</div>
+      <button class="buy-btn" data-pkg="24hours" data-price="50">Buy Now</button>
+    </div>
+
+  </div>
 </div>
+
+<!-- ✅ Popup Modal -->
+<div id="paymentModal" class="modal">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+        <h2>Unlimited package</h2>
+            <p id="packageDetails"></p>    
+        <label for="phoneInput">Enter Phone Number:</label>
+        <input type="text" id="phoneInput" placeholder="e.g. 0712345678">
+    
+    <button id="payBtn">Purchase Now</button>
+  </div>
+</div>
+
 
 
         <!-- Device Info -->
@@ -123,5 +143,46 @@
         </div>
     </div>
 
+    
+<!-- ✅ Modal Script -->
+<script>
+let selectedPkg = "";
+let selectedPrice = "";
+
+document.querySelectorAll('.buy-btn').forEach(button => {
+  button.addEventListener('click', function() {
+    selectedPkg = this.getAttribute("data-pkg");
+    selectedPrice = this.getAttribute("data-price");
+    document.getElementById("packageDetails").innerText = 
+      `You selected: ${selectedPkg} (Ksh ${selectedPrice})`;
+    document.getElementById("paymentModal").style.display = "block";
+  });
+});
+
+// Close modal
+document.querySelector(".close").onclick = function() {
+  document.getElementById("paymentModal").style.display = "none";
+}
+
+// Handle Pay button
+document.getElementById("payBtn").addEventListener("click", function() {
+  let phone = document.getElementById("phoneInput").value.trim();
+  if (phone === "") {
+    alert("Please enter your phone number.");
+    return;
+  }
+  
+  // Redirect with details
+  let url = `https://nicktechsolutions.com/buy-voucher?pkg=${selectedPkg}&price=${selectedPrice}&phone=${encodeURIComponent(phone)}`;
+  window.location.href = url;
+});
+
+// Close when clicking outside modal
+window.onclick = function(event) {
+  if (event.target == document.getElementById("paymentModal")) {
+    document.getElementById("paymentModal").style.display = "none";
+  }
+}
+</script>
 </body>
 </html>
