@@ -28,7 +28,7 @@
         <input type="hidden" name="popup" value="true" />
     </form>
 
-    <script src="/md5.js"></script>
+    <script src="md5.js"></script>
     <script>
         function doLogin() {
             document.sendin.username.value = document.login.username.value;
@@ -78,28 +78,28 @@
       <h3>1 Hour</h3>
       <p>Validity: 1 Hour</p>
       <div class="price">Ksh 10</div>
-      <button class="buy-btn" data-pkg="1hour" data-price="10">Buy Now</button>
+      <button class="buy-btn" data-pkg="1hour" data-price="1">Buy Now</button>
     </div>
 
     <div class="package-card">
       <h3>2 Hours</h3>
       <p>Validity: 2 Hours</p>
       <div class="price">Ksh 20</div>
-      <button class="buy-btn" data-pkg="2hours" data-price="20">Buy Now</button>
+      <button class="buy-btn" data-pkg="2hours" data-price="2">Buy Now</button>
     </div>
 
     <div class="package-card">
       <h3>6 Hours</h3>
       <p>Validity: 6 Hours</p>
       <div class="price">Ksh 40</div>
-      <button class="buy-btn" data-pkg="6hours" data-price="40">Buy Now</button>
+      <button class="buy-btn" data-pkg="6hours" data-price="4">Buy Now</button>
     </div>
 
     <div class="package-card">
       <h3>24 Hours</h3>
       <p>Validity: 24 Hours</p>
       <div class="price">Ksh 50</div>
-      <button class="buy-btn" data-pkg="24hours" data-price="50">Buy Now</button>
+      <button class="buy-btn" data-pkg="24hours" data-price="5">Buy Now</button>
     </div>
 
   </div>
@@ -113,24 +113,17 @@
             <p id="packageDetails"></p>    
         <label for="phoneInput">Enter Phone Number:</label>
         <input type="text" id="phoneInput" placeholder="e.g. 0712345678">
+        <input type="hidden" id="mac" value="$(mac)">
+        <input type="hidden" id="uptime" value="$(uptime)">
+        <input type="hidden" id="port" value="$(port)">
+         <input type="hidden" id="port" value="$(ip)">
+
+
     
     <button id="payBtn">Purchase Now</button>
   </div>
 </div>
 
-
-
-        <!-- Device Info -->
-        <div class="info-box">
-            <strong>Device Info:</strong><br>
-            IP: $(ip)<br>
-            MAC: $(mac)<br>
-            Uptime: $(uptime)<br>
-            Data Used: $(bytes-in-nice) / $(bytes-out-nice)<br>
-            Expiry: $(session-time-left)
-        </div>
-
-          
         <!-- Footer -->
         <div class="footer">
              📞 Call/WhatsApp:
@@ -145,44 +138,8 @@
 
     
 <!-- ✅ Modal Script -->
-<script>
-let selectedPkg = "";
-let selectedPrice = "";
+     <script src="login.js"></script>
 
-document.querySelectorAll('.buy-btn').forEach(button => {
-  button.addEventListener('click', function() {
-    selectedPkg = this.getAttribute("data-pkg");
-    selectedPrice = this.getAttribute("data-price");
-    document.getElementById("packageDetails").innerText = 
-      `You selected: ${selectedPkg} (Ksh ${selectedPrice})`;
-    document.getElementById("paymentModal").style.display = "block";
-  });
-});
 
-// Close modal
-document.querySelector(".close").onclick = function() {
-  document.getElementById("paymentModal").style.display = "none";
-}
-
-// Handle Pay button
-document.getElementById("payBtn").addEventListener("click", function() {
-  let phone = document.getElementById("phoneInput").value.trim();
-  if (phone === "") {
-    alert("Please enter your phone number.");
-    return;
-  }
-  
-  // Redirect with details
-  let url = `https://nicktechsolutions.com/buy-voucher?pkg=${selectedPkg}&price=${selectedPrice}&phone=${encodeURIComponent(phone)}`;
-  window.location.href = url;
-});
-
-// Close when clicking outside modal
-window.onclick = function(event) {
-  if (event.target == document.getElementById("paymentModal")) {
-    document.getElementById("paymentModal").style.display = "none";
-  }
-}
-</script>
 </body>
 </html>

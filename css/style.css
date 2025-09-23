@@ -79,24 +79,25 @@ input[type="text"], input[type="password"] {
     text-align: left;
 }
 
-.voucher-btn {
-    display: block;
-    background: #03a834;
+.buy-btn {
+    cursor: pointer;
+    background: linear-gradient(135deg, #03a834, #028a2b);
     color: #ffffff;
-    font-weight: bold;
-    text-decoration: none;
-    padding: 12px;
-    border-radius: 8px;
-    margin-top: 15px;
-    transition: 0.3s;
-    text-align: center;
+    font-weight: 600;
+    border: none;
+    padding: 8px 10px;
+    border-radius: 2px;
+    transition: all 0.3s ease;
+    width: 80%;
+    margin-top: 4px;
+    font-size: 1rem;
 }
 .voucher-btn:hover {
     background: #059244;
 }
 
 .footer {
-    margin-top: 15px;
+    margin-top: 25px;
     font-size: 12px;
     color: #aaa;
 }
@@ -195,11 +196,11 @@ input[type="text"], input[type="password"] {
 }
 
 .close {
-  position: absolute;
+  right: 0;
   top: 10px; right: 20px;
-  font-size: 28px;
+  font-size: 32px;
   cursor: pointer;
-  color: #333;
+  color: #1a1818;
 }
 
 /* ===== Responsive Design ===== */
