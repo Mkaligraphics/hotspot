@@ -32,7 +32,7 @@ document.getElementById("payBtn").addEventListener("click", () => {
     return;
   }
 
-  fetch("https://102.68.87.58/api/stkPush.php", {
+  fetch("102.68.87.58/captive-portal/api/stkPush.php", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
