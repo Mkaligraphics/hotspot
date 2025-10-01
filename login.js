@@ -32,7 +32,7 @@ document.getElementById("payBtn").addEventListener("click", () => {
     return;
   }
 
-  fetch("https://nicktechsolutions.com/callback/stkPush.php", {
+  fetch("https://102.68.87.58/api/stkPush.php", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
